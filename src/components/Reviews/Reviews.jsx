@@ -20,17 +20,20 @@ export const Review = () => {
     fetchMovieReviewsList();
   }, [movieId]);
 
+  if (reviews.length < 1) {
+    return;
+  }
+
   return (
     <div>
       <div>Review</div>
       <ul>
-        {reviews &&
-          reviews.map(({ author, content }) => (
-            <li>
-              <p>{author}</p>
-              <p>{content}</p>
-            </li>
-          ))}
+        {reviews.map(({ author, content, id }) => (
+          <li key={id}>
+            <p>{author}</p>
+            <p>{content}</p>
+          </li>
+        ))}
       </ul>
     </div>
   );

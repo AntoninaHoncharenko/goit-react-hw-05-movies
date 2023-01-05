@@ -20,6 +20,10 @@ export const MovieDetails = () => {
     fetchMovie();
   }, [movieId]);
 
+  if (movie.length < 1) {
+    return;
+  }
+
   const { title, release_date, vote_average, overview, poster_path, genres } =
     movie;
 
@@ -34,12 +38,12 @@ export const MovieDetails = () => {
       </div>
 
       <div>{title}</div>
-      <div>{release_date && release_date.slice(0, 4)}</div>
-      <div>Raiting: {vote_average && vote_average.toFixed(1)} / 10</div>
+      <div>{release_date.slice(0, 4)}</div>
+      <div>Raiting: {vote_average.toFixed(1)} / 10</div>
       <div>Overview</div>
       <div>{overview}</div>
       <div>Genres</div>
-      <div>{genres && genres.map(genre => genre.name).join(', ')}</div>
+      <div>{genres.map(genre => genre.name).join(', ')}</div>
 
       <NavLink to="cast">Cast</NavLink>
       <br />
