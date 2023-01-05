@@ -8,7 +8,7 @@ export const Movies = () => {
   const [movies, setMovies] = useState([]);
   // const [name, setName] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
-  const movie = searchParams.get('query');
+  const movie = searchParams.get('query') ?? '';
 
   const handleSubmit = query => {
     // setName(query);
@@ -17,7 +17,7 @@ export const Movies = () => {
 
   useEffect(() => {
     console.log(movie);
-    if (!movie) {
+    if (movie === '') {
       return;
     }
 
