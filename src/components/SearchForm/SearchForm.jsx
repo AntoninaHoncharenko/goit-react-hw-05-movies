@@ -6,6 +6,7 @@ export const SearchForm = ({ onSubmit }) => {
       return;
     }
     onSubmit(event.currentTarget.elements.query.value);
+    event.currentTarget.reset();
   };
 
   return (

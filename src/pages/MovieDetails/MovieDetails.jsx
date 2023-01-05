@@ -4,7 +4,6 @@ import { fetchMovieDetails } from '../../api';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
-
   const [movie, setMovie] = useState([]);
 
   useEffect(() => {
