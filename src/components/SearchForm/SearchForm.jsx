@@ -1,7 +1,10 @@
+import { toast } from 'react-toastify';
+
 export const SearchForm = ({ onSubmit }) => {
   const handleSubmit = event => {
     event.preventDefault();
     if (event.currentTarget.elements.query.value === '') {
+      toast('Enter a film name');
       event.currentTarget.reset();
       return;
     }

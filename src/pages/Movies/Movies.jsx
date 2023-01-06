@@ -3,16 +3,15 @@ import { useSearchParams } from 'react-router-dom';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 import { fetchMoviesByName } from '../../api';
 import { MovieList } from 'components/MovieList/MovieList';
+import { Loader } from 'components/Loader/Loader';
 
-export const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
-  // const [name, setName] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isLoading, setIsloading] = useState(false);
   const movie = searchParams.get('query') ?? '';
-  // const location = useLocation();
 
   const handleSubmit = query => {
-    // setName(query);
     setSearchParams({ query });
   };
 
@@ -23,10 +22,13 @@ export const Movies = () => {
 
     async function fetchMovie() {
       try {
+        setIsloading(true);
         const data = await fetchMoviesByName(movie);
         setMovies(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsloading(false);
       }
     }
 
@@ -36,7 +38,10 @@ export const Movies = () => {
   return (
     <div>
       <SearchForm onSubmit={handleSubmit} />
+      {isLoading && <Loader />}
       {movies && <MovieList movies={movies} />}
     </div>
   );
 };
+
+export default Movies;

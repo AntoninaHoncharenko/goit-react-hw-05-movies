@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 export const MovieItem = ({ movie }) => {
   const location = useLocation();
   const { title, name, id, poster_path } = movie;
+
   return (
     <li>
       <NavLink to={`/movies/${id}`} state={{ from: location }}>
