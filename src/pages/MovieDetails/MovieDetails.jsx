@@ -1,10 +1,11 @@
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovieDetails } from '../../api';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchMovie() {
@@ -28,7 +29,7 @@ export const MovieDetails = () => {
 
   return (
     <div>
-      <NavLink to="/">Go back</NavLink>
+      <NavLink to={location.state?.from ?? '/'}>Go back</NavLink>
       <div>
         <img
           src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
@@ -44,10 +45,14 @@ export const MovieDetails = () => {
       <div>Genres</div>
       <div>{genres.map(genre => genre.name).join(', ')}</div>
 
-      <NavLink to="cast">Cast</NavLink>
+      <NavLink to="cast" state={{ from: location.state?.from } ?? '/'}>
+        Cast
+      </NavLink>
       <br />
 
-      <NavLink to="reviews">Reviews</NavLink>
+      <NavLink to="reviews" state={{ from: location.state?.from } ?? '/'}>
+        Reviews
+      </NavLink>
       <Outlet />
     </div>
   );
