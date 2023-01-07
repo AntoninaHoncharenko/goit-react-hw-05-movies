@@ -2,10 +2,17 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovieReviews } from '../../api';
 import { Loader } from 'components/Loader/Loader';
+import {
+  ReviewItem,
+  ReviewsList,
+  Autor,
+  Text,
+  NotFound,
+} from './Reviews.styled';
 
 const Review = () => {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState();
   const [isLoading, setIsloading] = useState(false);
 
   useEffect(() => {
@@ -24,22 +31,21 @@ const Review = () => {
     fetchMovieReviewsList();
   }, [movieId]);
 
-  if (reviews.length < 1) {
-    return;
-  }
-
   return (
     <div>
-      <div>Review</div>
       {isLoading && <Loader />}
-      <ul>
-        {reviews.map(({ author, content, id }) => (
-          <li key={id}>
-            <p>{author}</p>
-            <p>{content}</p>
-          </li>
-        ))}
-      </ul>
+      {reviews ? (
+        <ReviewsList>
+          {reviews.map(({ author, content, id }) => (
+            <ReviewItem key={id}>
+              <Autor>{author}</Autor>
+              <Text>{content}</Text>
+            </ReviewItem>
+          ))}
+        </ReviewsList>
+      ) : (
+        <NotFound>Reviews have not been written yet</NotFound>
+      )}
     </div>
   );
 };

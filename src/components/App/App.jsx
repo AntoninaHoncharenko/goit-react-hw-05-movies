@@ -1,14 +1,18 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { NotFound } from './NotFound/NotFound';
-import { Layout } from './SharedLayout/SharedLayout';
+import 'react-toastify/dist/ReactToastify.css';
+import { GlobalStyle } from 'GlobalStyles';
+import { NotFound } from '../NotFound/NotFound';
+import { Layout } from '../SharedLayout/SharedLayout';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
-const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
-const Cast = lazy(() => import('./Cast/Cast'));
-const Review = lazy(() => import('./Reviews/Reviews'));
+const MovieDetails = lazy(() =>
+  import('../../pages/MovieDetails/MovieDetails')
+);
+const Cast = lazy(() => import('../Cast/Cast'));
+const Review = lazy(() => import('../Reviews/Reviews'));
 
 export const App = () => {
   return (
@@ -24,18 +28,8 @@ export const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      <ToastContainer />
+      <GlobalStyle />
     </div>
   );
 };
