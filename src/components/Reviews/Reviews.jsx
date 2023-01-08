@@ -33,8 +33,8 @@ const Review = () => {
 
   return (
     <div>
-      {isLoading.length > 1 && <Loader />}
-      {reviews ? (
+      {isLoading && <Loader />}
+      {reviews.length > 1 ? (
         <ReviewsList>
           {reviews.map(({ author, content, id }) => (
             <ReviewItem key={id}>
