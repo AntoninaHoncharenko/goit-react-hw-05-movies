@@ -12,7 +12,7 @@ import {
 
 const Review = () => {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState();
+  const [reviews, setReviews] = useState([]);
   const [isLoading, setIsloading] = useState(false);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Review = () => {
 
   return (
     <div>
-      {isLoading && <Loader />}
+      {isLoading.length > 1 && <Loader />}
       {reviews ? (
         <ReviewsList>
           {reviews.map(({ author, content, id }) => (

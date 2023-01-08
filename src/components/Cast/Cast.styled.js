@@ -27,3 +27,8 @@ export const CastName = styled.p`
 export const Character = styled.p`
   font-size: 18px;
 `;
+
+export const NotFound = styled.p`
+  font-size: 24px;
+  color: brown;
+`;
