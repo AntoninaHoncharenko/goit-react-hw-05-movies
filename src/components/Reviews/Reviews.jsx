@@ -44,7 +44,6 @@ const Review = () => {
           ))}
         </ReviewsList>
       )}
-
       {reviews.length === 0 && !isLoading && (
         <NotFound>Reviews have not been written yet</NotFound>
       )}
