@@ -35,7 +35,7 @@ const Cast = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {cast.length > 1 ? (
+      {cast.length > 1 && (
         <CastList>
           {cast.map(({ name, character, profile_path, id }) => (
             <CastItem key={id}>
@@ -52,7 +52,8 @@ const Cast = () => {
             </CastItem>
           ))}
         </CastList>
-      ) : (
+      )}
+      {cast.length === 0 && !isLoading && (
         <NotFound>Cast is not found</NotFound>
       )}
     </>

@@ -34,7 +34,7 @@ const Review = () => {
   return (
     <div>
       {isLoading && <Loader />}
-      {reviews.length > 1 ? (
+      {reviews.length > 1 && (
         <ReviewsList>
           {reviews.map(({ author, content, id }) => (
             <ReviewItem key={id}>
@@ -43,7 +43,9 @@ const Review = () => {
             </ReviewItem>
           ))}
         </ReviewsList>
-      ) : (
+      )}
+
+      {reviews.length === 0 && !isLoading && (
         <NotFound>Reviews have not been written yet</NotFound>
       )}
     </div>
