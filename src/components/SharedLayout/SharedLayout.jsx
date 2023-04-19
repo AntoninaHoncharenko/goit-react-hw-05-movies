@@ -9,7 +9,6 @@ export const Layout = () => {
         <Navigation>
           <NavItem to="/">Home</NavItem>
           <NavItem to="/movies">Movies</NavItem>
-          <NavItem to="/addrecipe">Add recipe</NavItem>
         </Navigation>
       </Header>
 
